@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: warmonitor-db
+    environment:
+      MONGO_INITDB_DATABASE: warmonitor
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - warmonitor-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: warmonitor-cache
+    ports:
+      - "6379:6379"
+    networks:
+      - warmonitor-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: warmonitor-backend
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongodb:27017/warmonitor
+      REDIS_URL: redis://redis:6379
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+      - redis
+    networks:
+      - warmonitor-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: warmonitor-frontend
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+      NEXT_PUBLIC_WS_URL: ws://localhost:3001
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - warmonitor-network
+
+volumes:
+  mongo-data:
+
+networks:
+  warmonitor-network:
+    driver: bridge
