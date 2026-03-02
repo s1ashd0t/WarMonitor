@@ -8,12 +8,12 @@ WarMonitor is a comprehensive intelligence dashboard designed to monitor geopoli
 
 ### Key Features
 
-- **Live Global Map — Incidents plotted by severity and location. See the world's chaos at a glance.
-- **News Aggregation — Pulls from multiple sources automatically. No tab-hopping required.
-- **AI Analysis — Sentiment scoring, threat assessment, geopolitical implications. Not just headlines — context.
-- **Real-Time Alerts — WebSocket-powered live updates. New incident? You know instantly.
-- **Regional Monitoring — Drill down by geography. Not every crisis is your crisis.
-- **Threat Scoring — Automated severity classification so you prioritize what actually matters.
+- Live Global Map — Incidents plotted by severity and location. See the world's chaos at a glance.
+- News Aggregation — Pulls from multiple sources automatically. No tab-hopping required.
+- AI Analysis — Sentiment scoring, threat assessment, geopolitical implications. Not just headlines — context.
+- Real-Time Alerts — WebSocket-powered live updates. New incident? You know instantly.
+- Regional Monitoring — Drill down by geography. Not every crisis is your crisis.
+- Threat Scoring — Automated severity classification so you prioritize what actually matters.
 
 ## Architecture
 
